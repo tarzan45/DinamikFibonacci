@@ -1,0 +1,42 @@
+using System;
+
+namespace dinamikFibonacci
+{
+    class Program
+    {
+        static int counterDinamik = 0;
+        static int counterRecursive = 0;
+        public static void Main()
+        {
+            int sayi;            
+            Program pr = new Program();
+            sayi = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(DF(sayi));
+            Console.WriteLine(FR(sayi));
+            Console.WriteLine("Dinamik fibonacci fonksiyonunun çalışma sayısı: " + counterDinamik + "\nRecursive fibonacci fonksiyonunun çalışma sayısı: " + counterRecursive);
+        }
+        public static int DF(int sayi)
+        {
+            counterDinamik++;
+            int[] sayilar = new int[sayi + 2];
+            for (int i = 0; i <= sayi; i++)
+                if (i == 0 || i == 1)
+                {
+                    sayilar[0] = 0;
+                    sayilar[1] = 1;
+                }
+                else
+                {
+                    sayilar[i] = sayilar[i - 1] + sayilar[i - 2];
+                }
+            return sayilar[sayi];
+        }
+        public static int FR(int sayi)
+        {
+            counterRecursive++;
+            if (sayi == 0)
+                return 0;
+            if (sayi <= 2)
+                return 1;            
+            return FR(sayi - 1) + FR(sayi - 2);
+        }
